@@ -1,0 +1,76 @@
+New log file opened at Wed May 13 20:39:19 PDT 2015 by 68562@udays-mbp
+Taking next connection to: 61964
+New client attempting to connect on port: 61965-61964
+  Address = /192.168.1.71:61964
+This client on port 61965 has uuid e808708e-543c-44e7-a8de-3a2b8ed6d911 configName activator humanReadableName Activator protocolVersion 1 featureTags Vector()
+Connected Clients: activator-e808708e-543c-44e7-a8de-3a2b8ed6d911
+Taking next connection to: 61964
+New client attempting to connect on port: 61966-61964
+  Address = /192.168.1.71:61964
+Handshake exception on socket: 61966
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 61964
+New client attempting to connect on port: 61967-61964
+  Address = /192.168.1.71:61964
+This client on port 61967 has uuid c16016a0-f51e-48d9-a8ba-339f920677c4 configName activator humanReadableName Activator protocolVersion 1 featureTags Vector()
+Connected Clients: activator-e808708e-543c-44e7-a8de-3a2b8ed6d911, activator-c16016a0-f51e-48d9-a8ba-339f920677c4
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 61964
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+Server socket thread exiting.
+0 clients open, will close them...
+All client sockets have been closed.
+Closing the 68562@udays-mbp logs at Wed May 13 21:39:35 PDT 2015, goodbye.
