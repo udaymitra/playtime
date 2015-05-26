@@ -13,7 +13,6 @@ import views.html.index;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.stream.Stream;
 
 public class Application extends Controller {
     // Custom Objects
