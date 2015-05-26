@@ -5,6 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET     /name=:id                   controllers.Application.returnName(id: String)
+GET     /ticker=:name&year=:year     controllers.Application.returnPrice(name: String, year: String)
 POST    /postendpoint               controllers.Application.postendpoint()
 POST    /newpostendpoint            controllers.Application.newpostendpoint()
 
