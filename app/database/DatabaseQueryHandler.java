@@ -23,6 +23,15 @@ public class DatabaseQueryHandler {
         }
     }
 
+    public void executeUpdate(String insertQuery) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(insertQuery);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
     public void closeConnection() {
         try {
             connection.close();
