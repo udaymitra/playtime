@@ -1,7 +1,111 @@
 @(message: String)
 
-@main("Welcome to Play") {
+@main("Food Network Application") {
+<p>@message</p>
+<!--Function for Play Webpage-->
+<!--@play20.welcome(message, style = "Java")-->
+<div class="container">
+    <ul class="nav nav-tabs" data-tabs="tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#correlation" id="correlationtab">
+                Login
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#example1" id="example1tab">
+                Register
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="correlation">
+            <div class="col-md-8">
+                <!-- Login FORM -->
+                <form>
+                    <div class="row">
+                        <div id="l-email-group" class="form-group col-md-4">
+                            <label for="l-email">Email</label>
+                            <input type="text" class="form-control input-medium" name="l-email" id="l-email">
+                        </div>
+                    </div>
 
-    @play20.welcome(message, style = "Java")
+                    <div class="row">
+                        <div id="l-pass-group" class="form-group col-md-4">
+                            <label for="l-pass">Password</label>
+                            <input type="password" class="form-control input-medium" name="l-pass" id="l-pass">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="login">Login<span class="fa fa-arrow-right"></span></button>
+                </form>
+            </div>
+            <div class="col-md-8" id="ajax"></div>
+        </div>
+        <div class="tab-pane fade" id="example1">
+            <div class="col-md-8">
+                <!-- Register FORM -->
+                <form id="register">
+                    <div class="row">
+                        <div id="fname-group" class="form-group col-md-4">
+                            <label for="fname">First Name</label>
+                            <input type="text" class="form-control input-medium" name="fname" id="fname">
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div id="lname-group" class="form-group col-md-4">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-control input-medium" name="lname" id="lname">
+                        </div>
+                    </div>
+
+                    <!-- User Name -->
+                    <div class="row">
+                        <div id="email-group" class="form-group col-md-4">
+                            <label for="email">E-Mail</label>
+                            <input type="text" class="form-control input-medium" name="email" id="email">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="row">
+                        <div id="pass-group" class="form-group col-md-4">
+                            <label for="pass">Password</label>
+                            <input type="text" class="form-control input-medium" name="pass" id="pass">
+                        </div>
+                    </div>
+
+                    <!-- Retype Password -->
+                    <div class="row">
+                        <div id="rpass-group" class="form-group col-md-4">
+                            <label for="rpass">Retype Password</label>
+                            <input type="text" class="form-control input-medium" name="rpass" id="rpass">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="zip-group" class="form-group col-md-4">
+                            <label for="zip">Zipcode</label>
+                            <input type="text" class="form-control input-medium" name="zip" id="zip">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="cus-group" class="form-group col-md-4">
+                            <label for="cus">Cuisine</label>
+                            <input type="text" class="form-control input-medium" name="cus" id="cus">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit <span class="fa fa-arrow-right"></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!-- Custom JS File -->
+<script src="@routes.Assets.at("javascripts/logpage.js")" type="text/javascript"></script>
 }
