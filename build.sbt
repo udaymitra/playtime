@@ -17,4 +17,4 @@ libraryDependencies ++= Seq(
 libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.35"
 
 //comment the following line to run in debug mode
-fork in run := true
+//fork in run := true

@@ -7,8 +7,8 @@ $(document).ready(function() {
 
 	    // Pick up Data from
 	    var formData = {
-	        'email'	            : $('#l-email').val(),
-	        'pass'              : $('#l-pass').val(),
+	        "email"	            : $('#l-email').val(),
+	        "pass"              : $('#l-pass').val()
 	    };
 
 		// Validations
@@ -25,18 +25,17 @@ $(document).ready(function() {
             $('#l-pass-group').append('<div class="help-block"><p>Required</p></div>'); // add the actual error message under our input
          }
 
-
 		// The Ajax Call
 	    $.ajax({
 	        type        : 'POST', 	// define the type of HTTP verb we want to use (POST for our form)
 	        url         : 'http://localhost:9000/loginSeller', 		// the url where we want to POST
-	        data        : formData, // our data object
+	        data        : JSON.stringify(formData), // our data object
 	        dataType    : 'json', 	// what type of data do we expect back from the server
-	        encode      : true
+	        contentType : "application/json"
 	    })
 	    // using the done promise callback
 	    .done(function(data) {
-	    	alert("Reaches Here");
+
 	    });
 
     // stop the form from submitting the normal way and refreshing the page
@@ -51,13 +50,13 @@ $(document).ready(function() {
 
 	    // Pick up Data from
 	    var formData = {
-	    	'fname'				: $('#fname').val(),
-	    	'lname'				: $('#lname').val(),
-	        'email'	            : $('#email').val(),
-	        'pass'              : $('#pass').val(),
-	        'rpass'				: $('#rpass').val(),
-	        'zip'               : $('#zip').val(),
-	        'cus'               : $('#cus').val(),
+	    	"fname"				: $('#fname').val(),
+	    	"lname"				: $('#lname').val(),
+	        "email"	            : $('#email').val(),
+	        "pass"              : $('#pass').val(),
+	        "rpass"				: $('#rpass').val(),
+	        "zip"               : $('#zip').val(),
+	        "cus"               : $('#cus').val(),
 	    };
 
 		// Validations
@@ -114,10 +113,10 @@ $(document).ready(function() {
 		// The Ajax Call
 	    $.ajax({
 	        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-	        url         : '', // the url where we want to POST
-	        data        : formData, // our data object
+	        url         : 'http://localhost:9000/addNewSeller', // the url where we want to POST
+	        data        : JSON.stringify(formData), // our data object
 	        dataType    : 'json', // what type of data do we expect back from the server
-	        encode      : true
+	        contentType : "application/json"
 	    })
 	    // using the done promise callback
 	    .done(function(data) {

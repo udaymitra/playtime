@@ -29,8 +29,9 @@ public class Application extends Controller {
             EmailPassword emailPassword = RequestParser.getJsonFromRequest(request(), EmailPassword.class);
             LoginCredentials loginCredentials = new LoginCredentials(emailPassword, LoginCredentials.UserType.SELLER);
             boolean sellerCredentialsVerified = sellerTableQueries.checkSellerCredentials(loginCredentials);
-            ObjectNode result = play.libs.Json.newObject();
-            result = sellerCredentialsVerified ? result.put("Message", "Success") : result.put("Message", "Failure");
+            ObjectNode result = sellerCredentialsVerified
+                    ? ResponseSerializer.createJson("success")
+                    : ResponseSerializer.createJson("failure");
             return ok(result);
         } catch (Exception ex) {
             return ok("error handling query");
@@ -42,7 +43,10 @@ public class Application extends Controller {
         try {
             Seller seller = RequestParser.getJsonFromRequest(request(), Seller.class);
             boolean addNewSellerSuccess = sellerTableQueries.addNewSeller(seller);
-            return addNewSellerSuccess ? ok("success") : ok("failure");
+            ObjectNode result = addNewSellerSuccess
+                    ? ResponseSerializer.createJson("success")
+                    : ResponseSerializer.createJson("failure");
+            return  ok(result);
         } catch (Exception ex) {
             return ok("error handling query");
         }
