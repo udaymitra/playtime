@@ -40,7 +40,7 @@ public class SellerTableQueries {
         if (sellerExists) {
             return false;
         }
-        String query = String.format("INSERT INTO seller VALUES ('%s', '%s', '%s', '%s', '%s', %d, '%s')",
+        String query = String.format("INSERT INTO seller VALUES ('%s', '%s', '%s', '%s', %d, '%s')",
                 seller.emailPassword.email, seller.emailPassword.pass, seller.fname, seller.lname, seller.zip,
                 seller.cuisine);
         System.out.println(query);
