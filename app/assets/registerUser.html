@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Register new user</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Please register</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" id="firstName" class="form-control" placeholder="First Name" required autofocus>
+        <input type="text" id="lastName" class="form-control" placeholder="Last Name" required autofocus>
+        <input type="number" id="zipCode" class="form-control" placeholder="zipcode" required autofocus>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <label for="reEnterPassword" class="sr-only">Re-enter Password</label>
+        <input type="password" id="reEnterPassword" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" id="register_button" type="submit"
+                onclick="signInButtonClick(this.form)">Register</button>
+
+    </form>
+
+</div> <!-- /container -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="./js/loginLogic.js"></script>
+<script src="./js/ajaxCalls.js"></script>
+
+</body>
+</html>
+
+
+
+

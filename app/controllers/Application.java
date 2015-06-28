@@ -1,14 +1,11 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import database.DatabaseQueryHandler;
 import database.SellerTableQueries;
 import models.EmailPassword;
 import models.LoginCredentials;
 import models.Seller;
-import play.api.libs.json.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -18,6 +15,9 @@ import views.html.index;
 public class Application extends Controller {
     private static DatabaseQueryHandler databaseQueryHandler = new DatabaseQueryHandler();
     private static SellerTableQueries sellerTableQueries = new SellerTableQueries(databaseQueryHandler);
+
+    private static final String USER_EMAIL = "USER_EMAIL";
+    private static final String USER_LAST_LOGIN_TIMESTAMP = "USER_LAST_LOGIN_TIMESTAMP";
 
     public static Result index() {
         return ok(index.render("Hi Pranav Achanta!"));
@@ -29,6 +29,12 @@ public class Application extends Controller {
             EmailPassword emailPassword = RequestParser.getJsonFromRequest(request(), EmailPassword.class);
             LoginCredentials loginCredentials = new LoginCredentials(emailPassword, LoginCredentials.UserType.SELLER);
             boolean sellerCredentialsVerified = sellerTableQueries.checkSellerCredentials(loginCredentials);
+
+            if (sellerCredentialsVerified) {
+                session(USER_EMAIL, emailPassword.email);
+                String lastLoginTimestamp = "" + System.currentTimeMillis();
+                session(USER_LAST_LOGIN_TIMESTAMP, lastLoginTimestamp);
+            }
             ObjectNode result = sellerCredentialsVerified
                     ? ResponseSerializer.createJson("success")
                     : ResponseSerializer.createJson("failure");
