@@ -56,3 +56,17 @@ function registerSuccessCallback(data) {
         alert("Couldnt register. User email address is probably already registered");
     }
 }
+
+function validateEmail(email){
+    // Make an AJAX Call to determine the Validity of the email
+    var emailJson = JSON.stringify(email.value);
+    ajaxPostCall(emailJson, 'http://localhost:9000/validateEmail').done(validateSuccessCallback).fail(loginFailureCallback);
+}
+
+function validateSuccessCallback(data){
+    if(data.Message == "success"){
+        alert("Mail Sent");
+    } else {
+        alert("Email Already Signed Up");
+    }
+}

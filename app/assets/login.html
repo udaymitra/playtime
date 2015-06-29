@@ -48,16 +48,19 @@
             </div>
 
             <div class = "col-md-2">
-                <button class="btn btn-primary btn-block" id="register_button" type="submit" href="#reg_email_block" data-toggle="collapse">Register</button>
+                <button class="btn btn-primary btn-block" id="register_button" type="submit" href="#reg_email_block" data-toggle="collapse">Sign Up</button>
             </div>
         </div>
     </form>
 
     <!--Register/Email Block-->
     <div class="container row collapse" id="reg_email_block">
-        <div class = "col-md-3">
+        <div class = "col-md-8">
             <label for="reg_email">A link will be sent to you email</label>
-            <input type="email" id="reg_email" class="form-control" name="reg_email" placeholder="Email address" required autofocus>
+            <div class="row">
+                <div class="col-md-6"><input type="email" id="reg_email" class="form-control" name="reg_email" placeholder="Email address" required autofocus></div>
+                <div class="col-md-2"><button class="btn btn-primary" id="send" type="submit" onclick="validateEmail(reg_email)">Send</button></div>
+            </div>
         </div>
     </div>
 </div> <!-- /container -->

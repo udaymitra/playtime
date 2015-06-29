@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index()
 POST    /loginSeller                controllers.Application.loginSeller()
 POST    /addNewSeller               controllers.Application.addNewSeller()
+POST    /validateEmail              controllers.Application.validateEmail()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

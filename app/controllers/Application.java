@@ -57,4 +57,18 @@ public class Application extends Controller {
             return ok("error handling query");
         }
     }
+
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result validateEmail(){
+        try{
+            String email = RequestParser.getJsonFromRequest(request(), String.class);
+            boolean validEmail = sellerTableQueries.validateEmail(email);
+            ObjectNode result = validEmail
+                    ? ResponseSerializer.createJson("success")
+                    : ResponseSerializer.createJson("failure");
+            return ok(result);
+        }catch (Exception ex){
+            return ok("Internal Server Error");
+        }
+    }
 }

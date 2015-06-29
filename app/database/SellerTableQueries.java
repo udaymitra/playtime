@@ -47,4 +47,11 @@ public class SellerTableQueries {
         databaseQueryHandler.executeUpdate(query);
         return true;
     }
+
+    public boolean validateEmail(String email) throws SQLException{
+        String query = String.format("SELECT * FROM seller WHERE email = '%s'",
+                email);
+        ResultSet resultSet = databaseQueryHandler.getResults(query);
+        return  (!resultSet.next());
+    }
 }
