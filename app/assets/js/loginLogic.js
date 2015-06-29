@@ -10,6 +10,33 @@ function signInButtonClick(loginForm) {
         .fail(loginFailureCallback);
 }
 
+function registerUserButtonClick(registerUserForm) {
+    var formElements = registerUserForm.elements;
+
+    var inputPassword = formElements.inputPassword.value;
+    var reEnteredPassword = formElements.reEnteredPassword.value;
+    if (inputPassword !== reEnteredPassword) {
+        alert("Both the passwords dont match!");
+        return;
+    }
+
+    var registerFormData = {
+        'emailPassword': {
+            'email' : formElements.inputEmail.value,
+            'pass' : formElements.inputPassword.value
+        },
+        'fname': formElements.firstName.value,
+        'lname': formElements.lastName.value,
+        'zip': formElements.zipCode.value,
+        'cuisine': formElements.cuisine.value
+    };
+    var registerFormJson= JSON.stringify(registerFormData);
+
+    ajaxPostCall(registerFormJson, 'http://localhost:9000/addNewSeller')
+        .done(registerSuccessCallback)
+        .fail(loginFailureCallback);
+}
+
 function loginSuccessCallback(data) {
     if(data.Message == "success"){
         alert("Login Successful");
@@ -22,7 +49,10 @@ function loginFailureCallback(data) {
     alert("AJAX call failure!!!" + data);
 }
 
-function registerUserButtonClick(registerUserForm) {
-
-
+function registerSuccessCallback(data) {
+    if(data.Message == "success"){
+        alert("Successfully registerd");
+    } else {
+        alert("Couldnt register. User email address is probably already registered");
+    }
 }
