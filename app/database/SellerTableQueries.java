@@ -3,6 +3,7 @@ package database;
 import com.google.common.base.Preconditions;
 import models.LoginCredentials;
 import models.Seller;
+import utils.IdGenerator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,15 +35,32 @@ public class SellerTableQueries {
         return !emails.isEmpty();
     }
 
+    public boolean checkIfSellerEmailIdExists(String emailId) throws SQLException {
+        String query = String.format("SELECT id FROM seller WHERE email LIKE '%s'", emailId);
+        ResultSet resultSet = databaseQueryHandler.getResults(query);
+        return (resultSet.next()) ? true : false;
+    }
+
+    public boolean checkIfSellerIdExists(long id) throws SQLException {
+        String query = String.format("SELECT id FROM seller WHERE id = %d", id);
+        ResultSet resultSet = databaseQueryHandler.getResults(query);
+        return (resultSet.next()) ? true : false;
+    }
+
     public boolean addNewSeller(Seller seller) throws SQLException {
-        boolean sellerExists = checkSellerCredentials(new LoginCredentials(
-                seller.emailPassword, LoginCredentials.UserType.SELLER));
-        if (sellerExists) {
+        boolean sellerEmailIdExists = checkIfSellerEmailIdExists(seller.emailPassword.email);
+        if (sellerEmailIdExists) {
             return false;
         }
-        String query = String.format("INSERT INTO seller VALUES ('%s', '%s', '%s', '%s', %d, '%s')",
-                seller.emailPassword.email, seller.emailPassword.pass, seller.fname, seller.lname, seller.zip,
-                seller.cuisine);
+
+        long newSellerId = IdGenerator.generateId();
+        if (checkIfSellerIdExists(newSellerId)) {
+            return false;
+        }
+
+        String query = String.format("INSERT INTO seller VALUES (%d, '%s', '%s', '%s', '%s', %d, '%s')",
+                newSellerId, seller.emailPassword.email, seller.emailPassword.pass, seller.fname, seller.lname,
+                seller.zip, seller.cuisine);
         System.out.println(query);
         databaseQueryHandler.executeUpdate(query);
         return true;

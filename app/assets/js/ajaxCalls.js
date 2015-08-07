@@ -8,3 +8,15 @@ function ajaxPostCall(jsonData, url) {
         contentType: 'application/json; charset=utf-8'
     });
 }
+
+function ajaxPostCallOldWay(jsonData, url, successFunction, errorFunction) {
+    $.ajax({
+        type : 'POST',
+        url : url,
+        data : jsonData,
+        dataType : 'json',
+        contentType: 'application/json; charset=utf-8',
+        success : successFunction,
+        error : errorFunction
+    });
+}

@@ -51,7 +51,7 @@ function loginFailureCallback(data) {
 
 function registerSuccessCallback(data) {
     if(data.Message == "success"){
-        alert("Successfully registerd");
+        alert("Successfully registered");
     } else {
         alert("Couldnt register. User email address is probably already registered");
     }
@@ -60,7 +60,9 @@ function registerSuccessCallback(data) {
 function validateEmail(email){
     // Make an AJAX Call to determine the Validity of the email
     var emailJson = JSON.stringify(email.value);
-    ajaxPostCall(emailJson, 'http://localhost:9000/validateEmail').done(validateSuccessCallback).fail(loginFailureCallback);
+    ajaxPostCall(emailJson, 'http://localhost:9000/validateEmail')
+        .done(validateSuccessCallback)
+        .fail(loginFailureCallback);
 }
 
 function validateSuccessCallback(data){
