@@ -52,6 +52,7 @@ function loginFailureCallback(data) {
 function registerSuccessCallback(data) {
     if(data.Message == "success"){
         alert("Successfully registered");
+        window.location="/assets/login.html";
     } else {
         alert("Couldnt register. User email address is probably already registered");
     }

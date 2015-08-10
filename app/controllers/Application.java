@@ -1,15 +1,20 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import database.DatabaseQueryHandler;
 import database.SellerTableQueries;
 import models.EmailPassword;
 import models.LoginCredentials;
+import models.MenuItem;
 import models.Seller;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
+//import views.html.index;
+
+import java.util.List;
 
 
 public class Application extends Controller {
@@ -19,9 +24,9 @@ public class Application extends Controller {
     private static final String USER_EMAIL = "USER_EMAIL";
     private static final String USER_LAST_LOGIN_TIMESTAMP = "USER_LAST_LOGIN_TIMESTAMP";
 
-    public static Result index() {
-        return ok(index.render("Hi Pranav Achanta!"));
-    }
+//    public static Result index() {
+//        return ok(index.render("Hi Pranav Achanta!"));
+//    }
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result loginSeller() {
@@ -70,5 +75,19 @@ public class Application extends Controller {
         }catch (Exception ex){
             return ok("Internal Server Error");
         }
+    }
+
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result getMenuItemsForSeller() {
+        try{
+            Long sellerId = RequestParser.getJsonFromRequest(request(), Long.class);
+            List<MenuItem> menuItemsForSeller = sellerTableQueries.getMenuItemsForSeller(sellerId);
+
+            JsonNode jsonNode = new ObjectMapper().valueToTree(menuItemsForSeller);
+            return ok(jsonNode);
+        }catch (Exception ex){
+            return ok("Internal Server Error");
+        }
+
     }
 }

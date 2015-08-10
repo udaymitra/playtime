@@ -2,6 +2,7 @@ package database;
 
 import com.google.common.base.Preconditions;
 import models.LoginCredentials;
+import models.MenuItem;
 import models.Seller;
 import utils.IdGenerator;
 
@@ -61,15 +62,34 @@ public class SellerTableQueries {
         String query = String.format("INSERT INTO seller VALUES (%d, '%s', '%s', '%s', '%s', %d, '%s')",
                 newSellerId, seller.emailPassword.email, seller.emailPassword.pass, seller.fname, seller.lname,
                 seller.zip, seller.cuisine);
-        System.out.println(query);
         databaseQueryHandler.executeUpdate(query);
         return true;
     }
 
-    public boolean validateEmail(String email) throws SQLException{
-        String query = String.format("SELECT * FROM seller WHERE email = '%s'",
-                email);
+    public boolean validateEmail(String email) throws SQLException {
+        String query = String.format("SELECT * FROM seller WHERE email = '%s'", email);
         ResultSet resultSet = databaseQueryHandler.getResults(query);
         return  (!resultSet.next());
+    }
+
+    public List<MenuItem> getMenuItemsForSeller(long sellerId) throws SQLException {
+        String query = String.format("SELECT itemid, name, description, price " +
+                "FROM seller_menuitems " +
+                "INNER JOIN menuitems ON seller_menuitems.menuitem_id = menuitems.itemid " +
+                "WHERE seller_menuitems.seller_id = %d", sellerId);
+
+        ResultSet resultSet = databaseQueryHandler.getResults(query);
+        return getMenuItemsFromResultSet(resultSet);
+    }
+
+    public List<MenuItem> getMenuItemsFromResultSet(ResultSet resultSet) throws SQLException{
+        List<MenuItem> menuItems = new ArrayList<>();
+        while (resultSet.next()) {
+            menuItems.add(new MenuItem(resultSet.getLong("itemid"),
+                    resultSet.getString("name"),
+                    resultSet.getString("description"),
+                    resultSet.getFloat("price")));
+        }
+        return menuItems;
     }
 }
